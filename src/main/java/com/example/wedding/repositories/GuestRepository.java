@@ -15,9 +15,11 @@ public interface GuestRepository extends JpaRepository<Guest,Long> {
 
     List<Guest> findAllByTable_Id (Long tableId);
 
+List<Guest> findAllByTaskId(Long id);
+    List<Guest> findAllByRoleId(Long roleId);
 
     void deleteById(Long guestId);
 
 
-    void deleteAllById(Long guestId);
+    List<Guest> findAllByRelationShipId(Long relationId);
 }

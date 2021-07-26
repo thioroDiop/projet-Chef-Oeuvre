@@ -32,7 +32,5 @@ public class Role {
         return description;
     }
 
-    public List<Guest> getGuestList() {
-        return guestList;
-    }
+
 }

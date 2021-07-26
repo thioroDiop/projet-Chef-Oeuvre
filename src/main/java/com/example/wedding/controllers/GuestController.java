@@ -1,6 +1,7 @@
 package com.example.wedding.controllers;
 
 import com.example.wedding.models.Guest;
+import com.example.wedding.models.Role;
 import com.example.wedding.repositories.GuestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -65,4 +66,26 @@ public ResponseEntity<Guest> createGuest(@RequestBody Guest newGuest){
     public List<Guest> getAllGuestByTableId(@PathVariable Long tableId){
         return  guestRepository.findAllByTable_Id(tableId);
     }
+
+    //Qui fait quoi? liste des invités par tache
+    @GetMapping("/tache/{taskId}")
+    public List<Guest> getAllGuestByTaskId(@PathVariable Long taskId){
+        return  guestRepository.findAllByTaskId(taskId);
+    }
+
+    // liste des invités par Role
+    @GetMapping("/role/{roleId}")
+    public List<Guest> getAllGuestByRoleId(@PathVariable Long roleId){
+        return  guestRepository.findAllByRoleId(roleId);
+    }
+
+
+    //liste des invité par relationID pour les Photos
+
+    @GetMapping("/relation/{relationId}")
+    public List<Guest> getAllGuestByRelationId(@PathVariable Long relationId){
+        return  guestRepository.findAllByRelationShipId(relationId);
+    }
+
+
 }
