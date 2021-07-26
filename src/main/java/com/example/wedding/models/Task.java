@@ -1,11 +1,16 @@
 package com.example.wedding.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo( scope = Task.class,// l'id est unique sur cette classe "Task"
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Task {
 
     @Id
@@ -14,7 +19,7 @@ public class Task {
     private Long id;
 
     private String description;
-@JsonIgnore
+
     @OneToMany(mappedBy = "task")
     private List<Guest> guestList;
 
@@ -29,7 +34,5 @@ public class Task {
         return description;
     }
 
-    public List<Guest> getGuestList() {
-        return guestList;
-    }
+
 }

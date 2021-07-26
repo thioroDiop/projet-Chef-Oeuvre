@@ -1,11 +1,16 @@
 package com.example.wedding.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo( scope = RelationShip.class,
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class RelationShip {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "relation_id_seq")
@@ -13,7 +18,7 @@ public class RelationShip {
     private Long id;
 
     private String relationType;
-@JsonIgnore
+
     @OneToMany (mappedBy = "relationShip")
     private List<Guest> guestList;
 

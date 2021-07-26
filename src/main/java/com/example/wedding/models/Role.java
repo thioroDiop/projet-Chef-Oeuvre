@@ -1,10 +1,15 @@
 package com.example.wedding.models;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@JsonIdentityInfo( scope = Role.class,
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "role_id_seq")
@@ -12,7 +17,7 @@ public class Role {
     private Long id;
 
     private String description;
-@JsonIgnore
+
     @OneToMany (mappedBy = "role")
     private List<Guest> guestList;
 

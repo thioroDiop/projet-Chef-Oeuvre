@@ -1,10 +1,15 @@
 package com.example.wedding.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.List;
 @Entity
+@JsonIdentityInfo( scope = WeddingTable.class,// l'id est unique sur cette classe "WeddingTable"
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class WeddingTable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "table_id_seq")
@@ -15,7 +20,7 @@ public class WeddingTable {
 
     private String imageUrl;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "table")
     private List<Guest> guestList;
 
@@ -34,7 +39,5 @@ public class WeddingTable {
         return tableName;
     }
 
-    public List<Guest> getGuestList() {
-        return guestList;
-    }
+
 }

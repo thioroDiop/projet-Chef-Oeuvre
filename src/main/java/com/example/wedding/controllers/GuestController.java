@@ -3,6 +3,7 @@ package com.example.wedding.controllers;
 import com.example.wedding.models.Guest;
 import com.example.wedding.repositories.GuestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,6 @@ public class GuestController {
     //Ajouter un invité
     @PostMapping()
 public ResponseEntity<Guest> createGuest(@RequestBody Guest newGuest){
-        //return  guestRepository.save(newGuest);
         try {
             return ResponseEntity.ok(this.guestRepository.save(newGuest));
         } catch (Exception e) {
@@ -41,6 +41,19 @@ public ResponseEntity<Guest> createGuest(@RequestBody Guest newGuest){
         }
     }
 
+
+    //Mettre à jour un invité
+    @PutMapping("/{identifiant}")
+    public  ResponseEntity<Guest> updateGuest(@PathVariable("identifiant") Long id,
+                                                      @RequestBody Guest oldGuest){
+        if(!oldGuest.getId().equals(id)){
+            return new ResponseEntity<>(oldGuest
+                    , HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Guest>(guestRepository.save(oldGuest)
+                ,HttpStatus.OK);
+
+    }
 
     @GetMapping("/{coupleId}") //Liste des invités par Marié
     public List<Guest> getAllGuestByBridalId(@PathVariable Long coupleId){

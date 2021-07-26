@@ -1,9 +1,15 @@
 package com.example.wedding.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo( scope = BridalCouple.class,
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class BridalCouple {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "bridal_id_seq")

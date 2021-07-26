@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+
 public class Gift {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "gift_id_seq")

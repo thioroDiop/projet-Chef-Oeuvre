@@ -1,10 +1,15 @@
 package com.example.wedding.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 
 @Entity
+@JsonIdentityInfo( scope = Guest.class,// l'id est unique sur cette classe "Item"
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Guest {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "guest_id_seq")
@@ -15,23 +20,23 @@ public class Guest {
     private String lastName;
     private String email;
     private String accommodation;
-    @JsonIgnore
+
     @ManyToOne
     private BridalCouple bridal;
-    @JsonIgnore
+//JsonIgnore
     @ManyToOne
     private Role role;
-    @JsonIgnore
+   // @JsonIgnore
     @ManyToOne
     private RelationShip relationShip;
-    @JsonIgnore
+   // @JsonIgnore
     @ManyToOne
     private WeddingTable table;
-    @JsonIgnore
+   // @JsonIgnore
     @ManyToOne
     private Task task;
 
-    @JsonIgnore
+  //  @JsonIgnore
     @ManyToOne
     private Gift gift;
 
@@ -50,33 +55,18 @@ public class Guest {
         return lastName;
     }
 
-    public BridalCouple getBridal() {
-        return bridal;
-    }
+
 
     public String getEmail() {
         return email;
     }
 
+
+
     public String getAccommodation() {
         return accommodation;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public RelationShip getRelationShip() {
-        return relationShip;
-    }
-
-    public WeddingTable getTable() {
-        return table;
-    }
-
-    public Task getTask() {
-        return task;
-    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
