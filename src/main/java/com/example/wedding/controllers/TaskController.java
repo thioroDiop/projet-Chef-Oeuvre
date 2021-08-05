@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin("http://localhost:4100")
+@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("api/taches")
 public class TaskController {
@@ -28,5 +28,15 @@ public class TaskController {
     @GetMapping("/{id}")
     public Optional<Task> getById(@PathVariable Long id){
         return taskRepository.findById(id);
+    }
+
+    @PostMapping
+    public Task createTask(@RequestBody Task newTask){
+        return taskRepository.save(newTask);
+    }
+
+    @DeleteMapping("/{idTask}")
+    public void deleteTask(@PathVariable Long idTask){
+        taskRepository.deleteById(idTask);
     }
 }

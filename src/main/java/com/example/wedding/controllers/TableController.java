@@ -1,16 +1,15 @@
 package com.example.wedding.controllers;
 
+import com.example.wedding.models.Task;
 import com.example.wedding.models.WeddingTable;
 import com.example.wedding.repositories.TableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
-@CrossOrigin("http://localhost:4100")
+@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("api/tables")
 public class TableController {
@@ -26,6 +25,9 @@ private TableRepository tableRepository;
        return tableRepository.findAllByOrderByTableNameAsc();
     }
 
-
+    @GetMapping("/{id}")
+    public Optional<WeddingTable> getById(@PathVariable Long id){
+        return tableRepository.findById(id);
+    }
 
 }

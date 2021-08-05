@@ -20,6 +20,11 @@ List<Guest> findAllByTaskId(Long id);
 
     void deleteById(Long guestId);
 
-
     List<Guest> findAllByRelationShipId(Long relationId);
+
+
+    List<Guest> getAllByGiftIsNotNull();
+
+
+    List<Guest> findAllByAccommodationEquals(String accommadation);
 }

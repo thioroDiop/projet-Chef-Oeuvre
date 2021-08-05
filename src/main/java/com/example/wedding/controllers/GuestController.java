@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("http://localhost:4100")
+@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("api/guests")
 public class GuestController {
@@ -87,5 +87,16 @@ public ResponseEntity<Guest> createGuest(@RequestBody Guest newGuest){
         return  guestRepository.findAllByRelationShipId(relationId);
     }
 
+    //liste des personnes à remercier pour leur cadeau
+    @GetMapping("gifts")
+    public List<Guest> getAllGuestByGift(){
+        return  guestRepository.getAllByGiftIsNotNull();
+    }
+
+    // liste des invités par Hebergement
+    @GetMapping("/Accommodation/{AccName}")
+    public List<Guest> getAllGuestByAccommodation(@PathVariable String AccName){
+        return  guestRepository.findAllByAccommodationEquals(AccName);
+    }
 
 }
