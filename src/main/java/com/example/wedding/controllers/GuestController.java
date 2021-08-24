@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @CrossOrigin("http://localhost:4200")
@@ -29,7 +30,7 @@ public class GuestController {
 
     //Supprimer un invité
     @DeleteMapping("/{guestId}")
-    public void deleteGuest(Long guestId){guestRepository.deleteById(guestId);}
+    public void deleteGuest(@PathVariable Long guestId){guestRepository.deleteById(guestId);}
 
 
     //Ajouter un invité
@@ -42,12 +43,20 @@ public ResponseEntity<Guest> createGuest(@RequestBody Guest newGuest){
         }
     }
 
+@Transactional
+@PutMapping(value = "/guest/update")
+public  ResponseEntity<Guest> updateCustomer(@RequestBody Guest oldGuest) {
+    //return customerRepository.save(customer);
 
+ return new ResponseEntity<Guest>(guestRepository.save(oldGuest),HttpStatus.OK);
+}//end
     //Mettre à jour un invité
     @PutMapping("/{identifiant}")
-    public  ResponseEntity<Guest> updateGuest(@PathVariable("identifiant") Long id,
+
+
+    public  ResponseEntity<Guest> updateGuest(@PathVariable Long identifiant,
                                                       @RequestBody Guest oldGuest){
-        if(!oldGuest.getId().equals(id)){
+        if(!oldGuest.getId().equals(identifiant)){
             return new ResponseEntity<>(oldGuest
                     , HttpStatus.BAD_REQUEST);
         }
