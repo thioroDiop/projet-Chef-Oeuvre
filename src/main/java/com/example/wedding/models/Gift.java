@@ -1,5 +1,7 @@
 package com.example.wedding.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,7 +16,13 @@ public class Gift {
     @Column(length = 355)
     private String description;
     private Double price;
+
     private String imageUrl;
+
+
+
+    @JsonIgnore
+
     @OneToMany(mappedBy = "gift")
     private List<Guest> guestList;
 
@@ -44,4 +52,6 @@ public class Gift {
     public List<Guest> getGuestList() {
         return guestList;
     }
+
+
 }

@@ -1,5 +1,6 @@
 package com.example.wedding.controllers;
 
+import com.example.wedding.models.Gift;
 import com.example.wedding.models.Guest;
 import com.example.wedding.models.Role;
 import com.example.wedding.repositories.GuestRepository;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
@@ -26,6 +28,11 @@ public class GuestController {
     @GetMapping//Liste des invités par Ordre alphabetique
     public List<Guest> getAllGuest(){
         return guestRepository.findAllByOrderByLastNameAsc();
+    }
+
+    @GetMapping("/guest/{guestId}")
+    public Optional<Guest> getGuestByID(@PathVariable Long guestId){
+        return guestRepository.findById(guestId);
     }
 
     //Supprimer un invité
@@ -102,10 +109,22 @@ public  ResponseEntity<Guest> updateCustomer(@RequestBody Guest oldGuest) {
         return  guestRepository.getAllByGiftIsNotNull();
     }
 
+
+    //liste des personnes à remercier pour leur cadeau
+    @GetMapping("gifts/{giftId}")
+    public List<Guest> getAllGuestByGiftID(@PathVariable Long giftId){
+        return  guestRepository.getAllByGift_Id(giftId);
+    }
+
     // liste des invités par Hebergement
     @GetMapping("/Accommodation/{AccName}")
     public List<Guest> getAllGuestByAccommodation(@PathVariable String AccName){
         return  guestRepository.findAllByAccommodationEquals(AccName);
     }
+
+    //liste des invités a placé sur le tables et donné une tache
+    @GetMapping("/palced")
+    public  List<Guest> getAllGuestToPlace(){
+        return  guestRepository.findAllByTableIsNullAndRoleIsNullAndTaskIsNull();   }
 
 }

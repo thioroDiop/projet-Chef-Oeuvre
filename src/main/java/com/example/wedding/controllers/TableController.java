@@ -30,4 +30,9 @@ private TableRepository tableRepository;
         return tableRepository.findById(id);
     }
 
+
+    @GetMapping("/listeTableNonRempli")
+    public List<WeddingTable>findTableNotFull(){
+        return tableRepository.findATableNotFull();
+    }
 }

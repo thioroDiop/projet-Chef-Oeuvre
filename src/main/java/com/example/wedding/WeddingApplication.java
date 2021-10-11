@@ -1,7 +1,15 @@
 package com.example.wedding;
 
+import com.example.wedding.models.AppUsers;
+import com.example.wedding.models.Roles;
+import com.example.wedding.repositories.AppUserRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.List;
 
 @SpringBootApplication
 public class WeddingApplication {
@@ -10,4 +18,11 @@ public class WeddingApplication {
         SpringApplication.run(WeddingApplication.class, args);
     }
 
+    @Bean
+    public CommandLineRunner loadData(AppUserRepository appUserRepository, PasswordEncoder passwordEncoder) {
+        return (args) -> {
+            AppUsers admin = appUserRepository.save(new AppUsers("admin", passwordEncoder.encode("admin"), List.of(Roles.ROLE_ADMIN)));
+            AppUsers guest = appUserRepository.save(new AppUsers("guest", passwordEncoder.encode("guest"), List.of(Roles.ROLE_GUEST)));
+            };
+    }
 }

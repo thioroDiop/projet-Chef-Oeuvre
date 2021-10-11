@@ -1,42 +1,53 @@
 package com.example.wedding.models;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 
 @Entity
-@JsonIdentityInfo( scope = Guest.class,// l'id est unique sur cette classe "Item"
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+
+
+//serialise un id au lieu d'un objet et remplace le Json Ignore
+
 public class Guest {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "guest_id_seq")
-    @SequenceGenerator(name = "guest_id_seq",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "guest_id_seq")
+    @SequenceGenerator(name = "guest_id_seq", allocationSize = 1)
     private Long id;
 
     private String firstName;
     private String lastName;
     private String email;
     private String accommodation;
+    private Double amountParticipation;
 
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne
     private BridalCouple bridal;
-//JsonIgnore
+
+    //@JsonIgnore
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne
     private Role role;
-   // @JsonIgnore
+
+    //@JsonIgnore
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne
     private RelationShip relationShip;
-   // @JsonIgnore
+
+    //pour arrêter la récursivité au niveau de la guestlist, n'affiche pas les invités dans la Table
+    @JsonIgnoreProperties("guestList")
+
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne
     private WeddingTable table;
-   // @JsonIgnore
+
+    //  @JsonIgnore
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne
     private Task task;
 
-  //  @JsonIgnore
+    // @JsonIgnore
     @ManyToOne
     private Gift gift;
 
@@ -55,13 +66,37 @@ public class Guest {
         return lastName;
     }
 
-
+    public Double getAmountParticipation() {
+        return amountParticipation;
+    }
 
     public String getEmail() {
         return email;
     }
 
+    public BridalCouple getBridal() {
+        return bridal;
+    }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public RelationShip getRelationShip() {
+        return relationShip;
+    }
+
+    public WeddingTable getTable() {
+        return table;
+    }
+
+    public Task getTask() {
+        return task;
+    }
+
+    public Gift getGift() {
+        return gift;
+    }
 
     public String getAccommodation() {
         return accommodation;
@@ -98,6 +133,10 @@ public class Guest {
 
     public void setTable(WeddingTable table) {
         this.table = table;
+    }
+
+    public void setAmountParticipation(Double amountParticipation) {
+        this.amountParticipation = amountParticipation;
     }
 
     public void setTask(Task task) {
