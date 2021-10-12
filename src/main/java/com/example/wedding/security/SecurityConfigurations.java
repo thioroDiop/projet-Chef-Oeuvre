@@ -30,7 +30,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * je mets à disposition de mon API un objet BCryptPasswordEncoder qui me permettra
+     * je mets à disposition de mon API un objet BCryptPasswordEncoder qui me permettra de cripter le mot de passe
      * @return
      */
     @Bean //rendre disponible l'objet renvoyé dans l'API
@@ -39,21 +39,21 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * permer de definir la hiérarchie des roles.
-     * Ici, le role Admin a au moins les droits du rôle CREATOR qui a au moins les droits du Reader
+     * permeT de definir la hiérarchie des roles.
+     * Ici, le role Admin a au moins les droits du rôle Guest
      * @return
      */
     @Bean
     public RoleHierarchy roleHierarchy() {
         RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
-        //si on est admin on peut accerder au meme fonctionalité  au chose de crea
-        String hierarchy = "ROLE_ADMIN > ROLE_CREATOR \n ROLE_CREATOR > ROLE_READER";
+        //si on est admin on peut accerder au meme fonctionalité  que guest
+        String hierarchy = "ROLE_ADMIN > ROLE_GUEST";
         roleHierarchy.setHierarchy(hierarchy);
         return roleHierarchy;
     }
 
     /**
-     * configure du Cross Origin pour que le front puisse faire des appels à l'APi via des
+     * configure du Cross Origin pour que le front puisse faire des appels à l'API via des
      * lien url
      * @return
      */
@@ -109,7 +109,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
                 //propre a mon API
                 .antMatchers("/authentication").permitAll() //tout le monde a acceder à: /authentication
                 .antMatchers(HttpMethod.GET, "/api/**").authenticated()// tu peux faire des get si tu es authentifier
-                .antMatchers(HttpMethod.POST, "/api/**").hasAuthority(Roles.ROLE_ADMIN.getAuthority())// tu peux faire des post si tu es createur
+                .antMatchers(HttpMethod.POST, "/api/**").hasAuthority(Roles.ROLE_GUEST.getAuthority())// tu peux faire des post si tu es createur
                 .antMatchers(HttpMethod.PUT, "/api/**").hasAuthority(Roles.ROLE_ADMIN.getAuthority())
                 .antMatchers(HttpMethod.DELETE, "/api/**").hasAuthority(Roles.ROLE_ADMIN.getAuthority())
                 .antMatchers("/admin/**").hasAuthority(Roles.ROLE_ADMIN.getAuthority())
