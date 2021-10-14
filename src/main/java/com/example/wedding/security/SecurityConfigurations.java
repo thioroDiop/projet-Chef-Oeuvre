@@ -83,6 +83,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
                 .antMatchers("/swagger-ui/index.html");
     }
 
+
     /**
      *
      * @param http
