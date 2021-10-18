@@ -45,10 +45,7 @@ public class GiftController {
         return ResponseEntity.ok(giftRepository.findAll(pageable).getContent());
         //getContent() transforme un type de donnée en liste
     }
-    // @GetMapping
-   /* public List<Gift> getAllGift(){
-        return giftRepository.findAll();
-    }*/
+
 
     /**
      * fonction qui compte le total de cadeaux dans ma BDD
@@ -61,7 +58,7 @@ public class GiftController {
     }
 
     //fonction qui retourne la liste des cadeaux avec les montants injectées
-@GetMapping("amount")
+@GetMapping("/amount")
     public ResponseEntity<List<Object>> getGiftWithAmount() {
     return ResponseEntity.ok(giftRepository.amountByGift());
 }

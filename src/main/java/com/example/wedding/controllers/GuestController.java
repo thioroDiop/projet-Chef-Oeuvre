@@ -97,7 +97,6 @@ public  ResponseEntity<Guest> updateCustomer(@RequestBody Guest oldGuest) {
 
 
     //liste des invité par relationID pour les Photos
-
     @GetMapping("/relation/{relationId}")
     public List<Guest> getAllGuestByRelationId(@PathVariable Long relationId){
         return  guestRepository.findAllByRelationShipId(relationId);
@@ -110,7 +109,7 @@ public  ResponseEntity<Guest> updateCustomer(@RequestBody Guest oldGuest) {
     }
 
 
-    //liste des personnes à remercier pour leur cadeau
+    //liste des personnes par cadeau à remercier pour leur cadeau
     @GetMapping("gifts/{giftId}")
     public List<Guest> getAllGuestByGiftID(@PathVariable Long giftId){
         return  guestRepository.getAllByGift_Id(giftId);
@@ -122,8 +121,8 @@ public  ResponseEntity<Guest> updateCustomer(@RequestBody Guest oldGuest) {
         return  guestRepository.findAllByAccommodationEquals(AccName);
     }
 
-    //liste des invités a placé sur le tables et donné une tache
-    @GetMapping("/palced")
+    //liste des invités a placé sur les tables et donné une tache
+    @GetMapping("/placed")
     public  List<Guest> getAllGuestToPlace(){
         return  guestRepository.findAllByTableIsNullAndRoleIsNullAndTaskIsNull();   }
 
