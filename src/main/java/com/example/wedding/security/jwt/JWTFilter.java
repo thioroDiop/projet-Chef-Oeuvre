@@ -4,6 +4,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 import org.springframework.security.core.context.SecurityContextHolder;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -37,7 +38,6 @@ public class JWTFilter extends GenericFilterBean {
             Authentication authentication = this.tokenProvider.getAuthentication(jwt);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
-
         // On laisse Spring continuer à travailler avec la requête
         filterChain.doFilter(servletRequest, servletResponse);
     }

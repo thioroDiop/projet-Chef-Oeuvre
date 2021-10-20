@@ -5,9 +5,6 @@ import com.example.wedding.security.jwt.JWTConfigurer;
 import com.example.wedding.security.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,6 +15,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 @EnableWebSecurity
@@ -29,8 +28,11 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
         this.tokenProvider = tokenProvider;
     }
 
+
+
     /**
      * je mets à disposition de mon API un objet BCryptPasswordEncoder qui me permettra de cripter le mot de passe
+     *
      * @return
      */
     @Bean //rendre disponible l'objet renvoyé dans l'API
@@ -41,6 +43,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     /**
      * permeT de definir la hiérarchie des roles.
      * Ici, le role Admin a au moins les droits du rôle Guest
+     *
      * @return
      */
     @Bean
@@ -55,6 +58,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     /**
      * configure du Cross Origin pour que le front puisse faire des appels à l'API via des
      * lien url
+     *
      * @return
      */
     @Bean
@@ -72,6 +76,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     /**
      * Ici c'est open bar pour les requêtes http avec methode OPTIONS
      * et aussi pour acceder à h2-console , et swagger
+     *
      * @param web
      */
     @Override
@@ -85,7 +90,6 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 
 
     /**
-     *
      * @param http
      * @throws Exception
      */
@@ -119,6 +123,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     }
 
     private JWTConfigurer securityConfigurerAdapter() {
+
         return new JWTConfigurer(tokenProvider);
     }
+
 }
