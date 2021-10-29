@@ -21,11 +21,13 @@ public class CoupleController {
 
         this.coupleRepository = coupleRepository;
     }
-
-    @GetMapping("/{coupleId}")
-    public Optional<BridalCouple> getCoupleByID(@PathVariable Long coupleId){
-        return coupleRepository.findById(coupleId);
+//nombre d'invités par marié
+    @GetMapping("/nbGuest")
+    public Object getGuestByCoupleID(){
+        return coupleRepository.countGuestByBridal();
     }
+
+
 
     @GetMapping
     public List<BridalCouple> getCouple(){
