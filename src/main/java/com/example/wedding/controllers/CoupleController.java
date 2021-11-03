@@ -18,7 +18,6 @@ public class CoupleController {
     private CoupleRepository coupleRepository;
 
     public CoupleController(CoupleRepository coupleRepository) {
-
         this.coupleRepository = coupleRepository;
     }
 //nombre d'invités par marié
@@ -26,8 +25,6 @@ public class CoupleController {
     public Object getGuestByCoupleID(){
         return coupleRepository.countGuestByBridal();
     }
-
-
 
     @GetMapping
     public List<BridalCouple> getCouple(){

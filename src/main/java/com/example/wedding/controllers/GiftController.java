@@ -58,9 +58,9 @@ public class GiftController {
     }
 
     //fonction qui retourne la liste des cadeaux avec les montants injectées
-@GetMapping("/amount")
+    @GetMapping("/amount")
     public ResponseEntity<List<Object>> getGiftWithAmount() {
-    return ResponseEntity.ok(giftRepository.amountByGift());
-}
+        return ResponseEntity.ok(giftRepository.amountByGift());
+    }
 
 }
