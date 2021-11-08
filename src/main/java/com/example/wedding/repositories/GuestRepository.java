@@ -2,25 +2,25 @@ package com.example.wedding.repositories;
 
 import com.example.wedding.models.Guest;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface GuestRepository extends JpaRepository<Guest,Long> {
+public interface GuestRepository extends JpaRepository<Guest, Long> {
 
     List<Guest> findAllByOrderByLastNameAsc();
+
     List<Guest> getAllByGift_Id(Long id);
 
 
     List<Guest> findAllByBridal_Id(Long bridalId);
 
 
-    List<Guest> findAllByTable_Id (Long tableId);
+    List<Guest> findAllByTable_Id(Long tableId);
 
-List<Guest> findAllByTaskId(Long id);
+    List<Guest> findAllByTaskId(Long id);
+
     List<Guest> findAllByRoleId(Long roleId);
 
     void deleteById(Long guestId);
@@ -31,16 +31,10 @@ List<Guest> findAllByTaskId(Long id);
     List<Guest> getAllByGiftIsNotNull();
 
 
-
-
     List<Guest> findAllByAccommodationEquals(String accommadation);
 
 
     List<Guest> findAllByTableIsNullAndRoleIsNullAndTaskIsNull();
-
-
-
-
 
 
 }

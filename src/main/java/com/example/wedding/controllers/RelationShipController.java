@@ -1,8 +1,6 @@
 package com.example.wedding.controllers;
 
-import com.example.wedding.models.Guest;
 import com.example.wedding.models.RelationShip;
-import com.example.wedding.models.Role;
 import com.example.wedding.repositories.RelationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

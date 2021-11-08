@@ -3,10 +3,9 @@ package com.example.wedding.repositories;
 import com.example.wedding.models.AppUsers;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import java.util.Optional;
 
- @Repository
+@Repository
 public interface AppUserRepository extends JpaRepository<AppUsers, Long> {
 
 

@@ -25,7 +25,7 @@ public class WeddingApplication {
         return (args) -> {
             AppUsers admin = appUserRepository.save(new AppUsers("admin", passwordEncoder.encode("admin"), List.of(Roles.ROLE_ADMIN)));
             AppUsers guest = appUserRepository.save(new AppUsers("guest", passwordEncoder.encode("guest"), List.of(Roles.ROLE_GUEST)));
-            };
+        };
     }
 
 

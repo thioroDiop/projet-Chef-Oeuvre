@@ -1,8 +1,6 @@
 package com.example.wedding.controllers;
 
 import com.example.wedding.models.Gift;
-import com.example.wedding.models.Role;
-import com.example.wedding.models.Task;
 import com.example.wedding.repositories.GiftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

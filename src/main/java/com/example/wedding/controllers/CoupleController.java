@@ -1,14 +1,14 @@
 package com.example.wedding.controllers;
 
 import com.example.wedding.models.BridalCouple;
-import com.example.wedding.models.Gift;
 import com.example.wedding.repositories.CoupleRepository;
-import com.example.wedding.repositories.GiftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
@@ -20,14 +20,15 @@ public class CoupleController {
     public CoupleController(CoupleRepository coupleRepository) {
         this.coupleRepository = coupleRepository;
     }
-//nombre d'invités par marié
+
+    //nombre d'invités par marié
     @GetMapping("/nbGuest")
-    public Object getGuestByCoupleID(){
+    public Object getGuestByCoupleID() {
         return coupleRepository.countGuestByBridal();
     }
 
     @GetMapping
-    public List<BridalCouple> getCouple(){
+    public List<BridalCouple> getCouple() {
         return coupleRepository.findAll();
     }
 }

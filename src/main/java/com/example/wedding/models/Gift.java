@@ -9,8 +9,8 @@ import java.util.List;
 
 public class Gift {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "gift_id_seq")
-    @SequenceGenerator(name = "gift_id_seq",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gift_id_seq")
+    @SequenceGenerator(name = "gift_id_seq", allocationSize = 1)
     private Long id;
     private String Name;
     @Column(length = 355)
@@ -20,9 +20,7 @@ public class Gift {
     private String imageUrl;
 
 
-
     @JsonIgnore
-
     @OneToMany(mappedBy = "gift")
     private List<Guest> guestList;
 

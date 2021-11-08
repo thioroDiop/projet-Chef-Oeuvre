@@ -22,11 +22,12 @@ public class RoleController {
     }
 
     @GetMapping
-    public List<Role> getAllRole(){
-        return  roleRepository.findAll();   }
+    public List<Role> getAllRole() {
+        return roleRepository.findAll();
+    }
 
-        @GetMapping("/{roleId}")
-    public Optional<Role> getRoleByID(@PathVariable Long roleId){
+    @GetMapping("/{roleId}")
+    public Optional<Role> getRoleByID(@PathVariable Long roleId) {
         return roleRepository.findById(roleId);
-        }
+    }
 }

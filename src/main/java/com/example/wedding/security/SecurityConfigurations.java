@@ -29,7 +29,6 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     }
 
 
-
     /**
      * je mets à disposition de mon API un objet BCryptPasswordEncoder qui me permettra de cripter le mot de passe
      *

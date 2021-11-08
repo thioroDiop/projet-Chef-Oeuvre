@@ -1,8 +1,6 @@
 package com.example.wedding.controllers;
 
-import com.example.wedding.models.Gift;
 import com.example.wedding.models.Guest;
-import com.example.wedding.models.Role;
 import com.example.wedding.repositories.GuestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

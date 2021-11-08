@@ -1,11 +1,9 @@
 package com.example.wedding.models;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 
@@ -17,8 +15,8 @@ public class Role {
 
     private String description;
 
-@JsonIgnore
-    @OneToMany (mappedBy = "role")
+    @JsonIgnore
+    @OneToMany(mappedBy = "role")
     private List<Guest> guestList;
 
     public Role() {
