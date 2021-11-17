@@ -1,15 +1,10 @@
 package com.example.wedding.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-/*@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id"
-)*/
+
 public class WeddingTable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "table_id_seq")
@@ -19,9 +14,6 @@ public class WeddingTable {
     private String tableName;
 
     private String imageUrl;
-    @JsonIgnore
-    @OneToMany(mappedBy = "tableMarie")
-    private List<BridalCouple> coupleList;
 
 
     @OneToMany(mappedBy = "table")

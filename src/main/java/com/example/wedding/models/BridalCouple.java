@@ -1,6 +1,5 @@
 package com.example.wedding.models;
 
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -21,10 +20,6 @@ public class BridalCouple {
     @OneToMany(mappedBy = "bridal")
     private List<Guest> guests;
 
-    // @JsonIgnore
-    @JsonIdentityReference(alwaysAsId = true)
-    @ManyToOne
-    private WeddingTable tableMarie;
 
     public BridalCouple() {
     }

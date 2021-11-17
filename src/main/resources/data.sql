@@ -45,8 +45,8 @@ insert into wedding_table (id, table_name,image_url ) values (nextval('table_id_
 insert into wedding_table (id, table_name,image_url ) values (nextval('table_id_seq'),'https://fontmeme.com/permalink/210914/db5ee2862d8ca5608c8e10c841f223d8.png','http://www.lesgribouillagesdenico.com/images/dessin-de-kangourou_4.jpg');
 insert into wedding_table (id, table_name,image_url ) values (nextval('table_id_seq'),'https://fontmeme.com/permalink/210914/890a0bdcc118d22474f2f749b3eaaf5a.png','https://st2.depositphotos.com/1000419/10459/v/950/depositphotos_104596248-stock-illustration-indian-goddess-shakti-sketch-for.jpg');
 
-insert into bridal_couple (id, name,table_marie_id) values (nextval('bridal_id_seq'),'FerNando',1);
-insert into bridal_couple (id, name,table_marie_id) values (nextval('bridal_id_seq'),'Isabelle',1);
+insert into bridal_couple (id, name) values (nextval('bridal_id_seq'),'FerNando');
+insert into bridal_couple (id, name) values (nextval('bridal_id_seq'),'Isabelle');
 
 
 insert into guest (id, last_name,first_name,role_id,relation_ship_id, email, accommodation,task_id,bridal_id,gift_id,table_id,amount_participation) values(nextval('guest_id_seq'),'Tourne','Jean',4,4,'tournejean@gmail.fr','Hotel',	1,1,1,3          ,60);
