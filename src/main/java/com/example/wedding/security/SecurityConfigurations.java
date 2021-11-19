@@ -112,8 +112,10 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //propre a mon API
                 .antMatchers("/authentication").permitAll() //tout le monde a acceder à: /authentication
-                .antMatchers(HttpMethod.GET, "/api/**").authenticated()// tu peux faire des get si tu es authentifier
-                .antMatchers(HttpMethod.POST, "/api/**").hasAuthority(Roles.ROLE_GUEST.getAuthority())// tu peux faire des post si tu es createur
+                //.antMatchers(HttpMethod.GET, "/api/**").authenticated()// tu peux faire des get si tu es authentifier
+               // .antMatchers(HttpMethod.POST, "/api/**").hasAuthority(Roles.ROLE_GUEST.getAuthority())// tu peux faire des post si tu es createur
+                .antMatchers(HttpMethod.GET, "/api/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/**").permitAll()
                 .antMatchers(HttpMethod.PUT, "/api/**").hasAuthority(Roles.ROLE_ADMIN.getAuthority())
                 .antMatchers(HttpMethod.DELETE, "/api/**").hasAuthority(Roles.ROLE_ADMIN.getAuthority())
                 .antMatchers("/admin/**").hasAuthority(Roles.ROLE_ADMIN.getAuthority())
